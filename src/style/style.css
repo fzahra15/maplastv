@@ -1,0 +1,887 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+.map_main_container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.top_container {
+    position: absolute;
+    top: 30px;
+    /* padding-top: 30px; */
+    left: 30px;
+}
+
+.main_flex {
+    display: flex;
+    gap: 30px;
+    /* align-items: center; */
+}
+
+.map_container img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.search_div {
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    border-radius: 25px;
+}
+
+.searched_data {
+    width: 376px;
+    background-color: white;
+    height: 287px;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding: 5px 20px 20px 20px;
+    overflow-y: scroll;
+    /* Hide scrollbar for WebKit-based browsers (Chrome, Safari) */
+    scrollbar-width: 20px;
+    scrollbar-color: #006A74;
+    /* For Firefox */
+    -ms-overflow-style: initial;
+    /* For Internet Explorer and Edge */
+}
+
+.card_left {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.searched_card {
+    border-bottom: 1px solid #006A74;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-direction: column; */
+    gap: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.card_right {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #014d51;
+    border-radius: 100%;
+    padding: 5px;
+}
+
+.card_right i {
+    font-size: 160%;
+}
+
+.card_right p {
+    font-size: 60%;
+    font-weight: 600;
+}
+
+.searched_card i {
+    color: #006A74;
+    font-size: 120%;
+}
+
+.searched_card h5 {
+    color: #006A74;
+    font-size: 80%;
+}
+
+.search {
+    width: 376px;
+    height: 48px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    border-radius: 25px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search img {
+    width: 40px;
+    height: 40px;
+    /* background-color: red; */
+    fill: #016871;
+}
+
+.search input {
+    /* padding: 12px 100px; */
+    width: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    outline: none;
+    font-size: 110%;
+}
+
+.search i {
+    color: #016871;
+}
+
+.loc_type_style {
+    position: relative;
+    left: 10%;
+}
+
+.loc_types {
+    width: 500px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    /* overflow-x: hidden; */
+    position: absolute;
+    top: 10px;
+    left: 10%;
+    /* Adjusted to be always off-screen */
+    transition: left 0.3s ease;
+    /* Smooth transition for visibility toggle */
+}
+
+.loc_type_btns {
+    width: 175px;
+    height: 34px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding: 12px;
+    border: none;
+}
+
+.loc_type_btns i {
+    color: #016871;
+    font-size: 155%;
+}
+
+.loc_type_btns h3 {
+    font-size: 145%;
+    font-weight: 500;
+    color: #016871;
+}
+
+.satelites {
+    width: 35px;
+    height: 35px;
+    /* background-image: url('../img/437517806_122127168494234711_4997038554708139286_n-removebg-preview.png'); */
+    border: 2px solid #016871;
+    border-radius: 5px;
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    background-color: white;
+    font-size: 100%;
+    font-weight: 600;
+    color: #006A74;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+.check_layer {
+    position: absolute;
+    width: 150px;
+    /* height: 80px; */
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    padding: 12px;
+    border-radius: 20px;
+    bottom: 10px;
+    left: 120px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* display: none; */
+}
+
+.check_layer button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #006A74;
+    border-radius: 20px;
+}
+
+.check_layer button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.layer_cont h4 {
+    margin-top: 5px;
+    font-size: 60%;
+    font-weight: 600;
+    color: #016871;
+    text-align: center;
+}
+
+.current_location {
+    position: absolute;
+    bottom: 20px;
+    background-color: white;
+    border: 2px solid #006A74;
+    border-radius: 10px;
+    right: 30px;
+    color: #006A74;
+    padding: 10px;
+    font-size: 120%;
+}
+
+.hubs_venues_hotels,
+.close_loc_container {
+    width: 376px;
+    height: 70vh;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: white;
+    margin-top: 30px;
+    position: absolute;
+    top: 30px;
+    overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        /* Width of the scrollbar */
+    }
+
+    /* Track (background of the scrollbar) */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        /* Light grey background */
+        border-radius: 10px;
+    }
+
+    /* Handle (scroll thumb) */
+    ::-webkit-scrollbar-thumb {
+        background-color: #016871;
+        /* Main color of the scrollbar */
+        border-radius: 10px;
+        /* Rounded corners */
+        border: 2px solid #f1f1f1;
+        /* Space between handle and track */
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #014d51;
+        /* Darker color on hover */
+    }
+
+    /* For Firefox */
+    scrollbar-width: thin;
+    /* Makes the scrollbar thinner */
+    scrollbar-color: #016871 #f1f1f1;
+    /* Thumb color and track color */
+
+    /* For Internet Explorer and Edge */
+    -ms-overflow-style: none;
+    /* Hides default scrollbar */
+}
+
+.hubs_venues_hotels::-webkit-scrollbar {
+    display: none;
+    /* Hide the scrollbar in WebKit-based browsers */
+}
+
+.card_main {
+    border-top: 1px solid #006A74;
+    border-bottom: 0.5px solid #006A74;
+    padding: 10px;
+
+}
+
+.card_main p{
+    font-size: 80%;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* This ensures space between text and image */
+    gap: 10px;
+    position: relative;
+}
+
+.card_inner {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    /* Changed to center to align text and icon properly */
+}
+
+.card i {
+    color: #006A74;
+    font-size: 175%;
+}
+
+.card h3 {
+    font-size: 85%;
+    font-weight: 400;
+    color: #006A74;
+    margin: 0;
+    /* width: 130px; */
+    /* Remove any margins that could disrupt alignment */
+}
+
+.card img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #006A74;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-left: 30px;
+    position: static;
+    /* Remove absolute positioning */
+    flex-shrink: 0;
+    /* Prevent the image from shrinking */
+}
+
+.top_container,
+.check_layer,
+.current_location,
+.satelites {
+    z-index: 10;
+    /* Значение можно изменить в зависимости от необходимости */
+}
+
+
+.locationPopUp {
+    font-size: 90%;
+    font-weight: 300;
+    color: #006A74;
+    border-radius: 25px;
+    border: 1px solid #006A74;
+    padding: 10px;
+}
+
+.card button {
+    padding: 7px 12px;
+    background: none;
+    border: 1px solid #016871;
+    border-radius: 25px;
+    position: static;
+    right: 0;
+    flex-shrink: 0;
+    color: #006A74;
+    font-size: 75%;
+    font-weight: 400;
+}
+
+.hubIcon {
+    margin-right: -3px;
+}
+
+
+/* Override Mapbox Directions panel styles */
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-panel {
+    background-color: white !important;
+    color: black !important;
+    border-radius: 10px;
+    position: relative;
+    z-index: 110;
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-step {
+    color: #016871 !important;
+    /* border-bottom: 1px solid #A7BAC0 !important; */
+    /* padding-bottom: 5px; */
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-route-summary h1 {
+    color: white !important;
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-component-keyline,
+.mapboxgl-ctrl-directions .mapbox-directions-route-summary,
+.mapboxgl-ctrl-directions .mapbox-directions-icon {
+    color: black !important;
+}
+
+/* Style the input fields */
+.mapboxgl-ctrl-directions input[type="text"],
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-geocoder--input {
+    /* background-color: #A7BAC0 !important; */
+    color: #016871 !important;
+    border-radius: 10px;
+    border: none;
+    padding-bottom: 5px;
+}
+
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-geocoder--input:focus {
+    background-color: white !important;
+    color: yellow !important;
+}
+
+/* Buttons styling */
+.mapboxgl-ctrl-directions .mapbox-directions-profile-button {
+    background-color: #016871 !important;
+    color: white !important;
+    border-radius: 10px;
+    border: none;
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-profile-button.mapbox-directions-profile-button--active {
+    background-color: #A7BAC0 !important;
+    color: #016871 !important;
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-step .mapbox-directions-icon,
+.mapboxgl-ctrl-directions .mapbox-directions-step-distance {
+    color: #016871 !important;
+}
+
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-toggle {
+    background-color: #016871 !important;
+    color: white !important;
+    border-radius: 10px;
+}
+
+/* Additional customization */
+.mapboxgl-ctrl-directions .mapbox-directions-step-annotation {
+    color: #A7BAC0 !important;
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-step-icon {
+    color: #016871 !important;
+}
+
+
+.mapbox-directions-steps {
+    background-color: white;
+    /* padding: 20px; */
+}
+
+
+
+/* directions */
+
+/* Customize the container of directions input */
+.mapboxgl-ctrl-directions {
+    background-color: #f0f0f0;
+    /* Light background color */
+    border-radius: 10px;
+    /* Rounded corners */
+    padding: 10px;
+    /* Add some padding */
+    max-width: 350px;
+    /* Max width to control size */
+}
+
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-geocoder--input {
+    border: 1px solid #006A74;
+    /* Border color matching your theme */
+    border-radius: 5px;
+    /* Slight rounding of input field corners */
+    padding: 5px;
+    /* Add padding inside input fields */
+    font-size: 14px;
+    /* Font size for text */
+}
+
+
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-profile-button {
+    background-color: #006A74;
+    /* Custom button background color */
+    color: yellow;
+    /* Button text color */
+    border-radius: 5px;
+    /* Rounded corners for buttons */
+    margin: 0 5px;
+    /* Spacing between buttons */
+    font-weight: bold;
+    /* Bold text for buttons */
+}
+
+
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-profile-button-active {
+    background-color: #004d4d;
+    /* Darker background for active button */
+    color: white;
+    /* Active button text color */
+}
+
+.mapbox-form-label .directions-icon {
+    background-color: #006A74;
+}
+
+.mapboxgl-ctrl-geocoder .geocoder-pin-right *.active {
+    fill: #006A74;
+}
+
+mapboxgl-ctrl-directions .mapbox-directions-component-keyline,
+.mapboxgl-ctrl-directions .mapbox-directions-route-summary,
+.mapboxgl-ctrl-directions .mapbox-directions-icon {
+    background-color: #006A74;
+    color: white;
+}
+
+
+.mapbox-directions-instructions {
+    overflow-y: scroll;
+    /* Hide scrollbar for WebKit-based browsers (Chrome, Safari) */
+    scrollbar-width: 2px;
+    /* For Firefox */
+    -ms-overflow-style: none;
+}
+
+.mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-zoom-rotate mapboxgl-touch-drag-pan {
+    background-color: #006A74;
+}
+
+
+/* Make the directions container more compact */
+.mapboxgl-ctrl-directions {
+    font-family: Arial, sans-serif;
+    /* Customize font */
+    width: 300px;
+    /* Adjust width to fit the desired design */
+    background-color: #ffffff;
+    /* Background color of the directions panel */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Light shadow for better visibility */
+}
+
+/* Style for the top input fields */
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-geocoder--input {
+    width: 100%;
+    padding: 8px 10px;
+    /* Add padding */
+    font-size: 14px;
+    /* Font size for better readability */
+}
+
+/* Style the labels for A and B input */
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-origin,
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-destination {
+    background-color: #333;
+    /* Darker background for labels */
+    color: #fff;
+    /* White text color for labels */
+    padding: 5px;
+    /* Padding around the labels */
+    border-radius: 3px;
+    /* Rounded corners */
+}
+
+/* Adjust padding and margins inside the directions */
+.mapboxgl-ctrl-directions .mapbox-directions-route-summary {
+    padding: 10px;
+    /* Add padding around the route summary */
+    font-size: 14px;
+    /* Font size for readability */
+    border-bottom: 1px solid #ddd;
+    /* Light bottom border */
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-step {
+    padding: 10px;
+    /* Padding around each step */
+    font-size: 12px;
+    /* Smaller font size for steps */
+    color: #333;
+    /* Text color for steps */
+}
+
+/* Style the buttons (Traffic, Driving, Walking, Cycling) */
+.mapboxgl-ctrl-directions .mapbox-directions-profile {
+    display: flex;
+    /* Display buttons in a row */
+    justify-content: space-around;
+    /* Space buttons evenly */
+    background-color: #f8f8f8;
+    /* Light background for buttons */
+    border-bottom: 1px solid #ddd;
+    /* Bottom border */
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-profile button {
+    flex: 1;
+    /* Each button takes equal space */
+    padding: 8px 0;
+    /* Padding for buttons */
+    font-size: 12px;
+    /* Font size for buttons */
+    background-color: #0074cc;
+    /* Default button background color */
+    color: #fff;
+    /* Button text color */
+    border: none;
+    /* Remove border */
+    border-radius: 0;
+    /* No rounded corners for buttons */
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-profile button:hover {
+    background-color: #005fa3;
+    /* Darker background on hover */
+}
+
+.mapboxgl-ctrl-directions .mapbox-directions-profile button.active {
+    background-color: #005fa3;
+    /* Active button background */
+}
+
+/* Adjust padding for the route summary and steps */
+.mapboxgl-ctrl-directions .mapbox-directions-route-summary,
+.mapboxgl-ctrl-directions .mapbox-directions-step {
+    padding-left: 15px;
+    /* Indent text slightly */
+    padding-right: 15px;
+}
+
+/* Style the total time and distance summary */
+.mapboxgl-ctrl-directions .mapbox-directions-summary span {
+    font-weight: bold;
+    /* Make text bold */
+    font-size: 16px;
+    /* Larger font for summary */
+    color: #333;
+    /* Text color */
+}
+
+/* Make the turn-by-turn instructions more compact */
+.mapboxgl-ctrl-directions .mapbox-directions-step {
+    margin-bottom: 8px;
+    /* Space between each step */
+    padding: 8px;
+    /* Padding for each step */
+    background-color: #f8f8f8;
+    /* Light background */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Light shadow for steps */
+}
+
+
+
+.mapboxgl-ctrl-directions mapboxgl-ctrl {
+    display: none;
+}
+
+
+.button_container {}
+
+
+
+/* New 09.04.2024 */
+.mapboxgl-ctrl-directions .mapbox-directions-route-summary,
+.mapboxgl-ctrl-directions .mapbox-directions-step {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white !important;
+}
+
+.mapbox-directions-component mapbox-directions-route-summary span {
+    color: white !important;
+}
+
+.mapbox-directions-instructions-wrapper {
+    color: #004d4d !important;
+}
+
+
+.hub_venues_hotels_filter_buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 5px;
+}
+
+.hub_venues_hotels_filter_buttons button {
+    padding: 5px 10px;
+    background: none;
+    border: 2px solid #016871;
+    border-radius: 25px;
+    color: #016871;
+    font-size: 75%;
+    font-weight: 500;
+}
+
+
+.close_loc_n_places {
+    /* width: 1170px;
+    height: 1000px;
+    background-color: red; */
+    display: flex;
+    left: 50%;
+    gap: 1000px;
+}
+
+/* !important */
+
+.close_loc_n_places_container {
+    display: flex;
+    gap: 20px;
+}
+
+.hubs_venues_hotels {
+    flex: 1;
+    /* Additional styles */
+}
+
+.close_loc_container {
+    flex: 1;
+    /* Additional styles */
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.hubs_venues_hotels {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.close_loc_container_wrapper {
+    flex: 1;
+    margin-left: 10px;
+}
+
+
+.card_inner {
+    justify-content: space-between;
+}
+
+.card_inner p {
+    font-size: 60%;
+    font-weight: 400;
+    color: #016871;
+    /* margin-left: 20%; */
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.hubs_venues_hotels {
+    flex: 1;
+    margin-bottom: 20px;
+    /* Adjust spacing as needed */
+    max-height: 100vh;
+    /* Ensures it doesn't overflow */
+    overflow-y: auto;
+    /* Allows scrolling if content overflows */
+}
+
+.side-by-side-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 360px;
+}
+
+.selected_location_container,
+.close_loc_container_wrapper {
+    flex: 1;
+    margin: 0 10px;
+    /* Space between containers */
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.selected_location_container {
+    padding: 10px;
+    background-color: #f1f1f1;
+    /* Different background to distinguish it */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+.close_loc_container {
+    /* padding: 10px; */
+    height: 120px;
+    background-color: #fff;
+    /* Light background for differentiation */
+    /* border-radius: 5px; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+.card {
+    /* margin-bottom: 10px; */
+    /* padding: 10px; */
+    background-color: #ffffff;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 4px; */
+}
+
+.card_inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shuttle_card{
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.shuttle_card_inner{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.shuttle_card_inner h3{
+    font-size: 80%;
+    color: #014d51;
+}
+
+.shuttle_card_inner i{
+    color: #004d4d;
+}
+
+.shuttle_card p{
+    font-size: 70%;
+    font-weight: 500;
+    margin-left: 24px;
+}
+.time_table{
+    margin-top: 40px;
+}
+
+.time_table h4{
+    font-size: 75%;
+    color: #006A74;
+}
+.time_table p{
+    font-size: 55%;
+    font-weight: 600;
+    margin-top: 10px;
+}
